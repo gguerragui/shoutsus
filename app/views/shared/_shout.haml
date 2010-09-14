@@ -1,0 +1,8 @@
+.shout{ :id => "shout_#{shout.id}" }
+  .avatar= gravatar_for(shout.user).html_safe
+  .body= auto_link(shout.message, :html => { :target => "_blank" }) { |text| truncate(text, :length => 15) }
+  .user= shout.user.login
+  .date= "#{time_ago_in_words(shout.created_at)} #{I18n.t(:ago)}"
+  - if shout.user == current_user
+    = link_to t(:delete), shout, :remote => true, :method => :delete
+

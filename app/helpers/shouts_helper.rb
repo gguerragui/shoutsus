@@ -1,0 +1,3 @@
+module ShoutsHelper
+end
+

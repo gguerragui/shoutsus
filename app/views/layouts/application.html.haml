@@ -1,0 +1,24 @@
+!!! XML
+!!!
+%html
+  %head
+    %title SU's shout
+    = stylesheet_link_tag 'stylesheet'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie', :media => 'screen'
+    = csrf_meta_tag
+  %body
+    #container
+      #header
+        %h1 Shout SUS's
+        - if user_signed_in?
+          .logout=link_to 'logout', destroy_user_session_path
+      #content
+        #flash= %w(notice alert).map { |key| message(key) }.join.html_safe
+        = yield
+      #footer
+
+    %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" }
+    %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" }
+    = javascript_include_tag :all
+
